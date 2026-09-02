@@ -17,8 +17,8 @@ The study followed a paired design, each post-treatment sample is matched with a
 
 Four paried patients were originally used with 8 datasets however, 1 patient pairing had to be removed due to insufficient cell counts in the post-treatment dataset so this patient was not used. This left 3 patients and 6 paired datasets.
 
-GEO accession: GSE183953
-Contributor(s)	Ver Heul A, Mack M, Kim B
+- GEO accession: GSE183953
+- Contributor(s): Ver Heul A, Mack M, Kim B
 
 ## Workflow:
 #### -Load the libraries
@@ -35,14 +35,41 @@ Contributor(s)	Ver Heul A, Mack M, Kim B
 - 193241 out of 546771 cell barcodes showed no signal (35%)
 - However, cell barcodes can also pick up low signals even if they are blanks so a violin plot was plotted to show the distribution of total_counts and n_genes_by_counts
 - It was decided to filter out all cell barcodes with a minimum 250 n_genes_by_counts 
+- QC metrics were then reassessed 
+#### -Further cell filtering (Mitochondrial)
+- Mitochondrial genes were identified and then a violin plot was created to show the distribution of percentage of genes that are mitochondrial in each cell
+- Cells that were over 20% mitochondrial genes were removed leaving 6655 cells
+- This is because a cells RNA makeup should be mostly nuclear, cells with high mitochondrial gene expression are often stressed or damaged
+#### -Further cell filtering (Doublet)
+- The function scrublet was then used to identify predicted doublets
+- 223 doublets were identified and removed which left 6432 cells
+#### -Save the raw counts
+- The raw counts were saved and the dataset was renamed to match the sample
+#### -Run the previous preprocessing on the other 7 datasets
+- A function was defined to automatically conduct the previous preprocessing steps that had been done on the first sample under the assumption that these 8 datasets were similar
+- Patient AD036 had to be removed due to the post-treatment sample only having 446 cell barcodes with >250 genes meaning this sample was too small to be removed
+- All other samples ended up with between 4000 and 11,000 usable cells 
+-The 6 datsets were then concatenated 
+#### -Normalisation
 #### -Select HVG (Highly Variables Genes)
+- The highly variable gene function was used to select the top 2000 HVGs
+- This reduced the dimensionality whilst allowing the most influential genes to be used in clustering
 #### -Undergo feature selection and PCA
 - PCA was used to further reduce dimensionality
-- 50 PCA components capture major patterns in variation, the 30 more important were used.
+- 50 PCA components capture major patterns in variation, the 40 most important were used
 #### -Construct nearest neighbor plots
 - Built using the PCA representation of the data
 - It connects cells with similar gene expression profiles and maps them close together
 #### -Generate UMAP plot
 #### -Perform clustering
 - We used Leiden clustering to group transcriptionaly similar cells
-#### -Reasses quality control and remove error cells
+#### -Inspect clusters
+#### -Cluster 12 analysis
+- This was due to cluster 12 having abnormally high n_counts
+- This was shown to be a non-error cluster as the marker genes suggested this was a plasma cell cluster
+- Plasma cells are very transcriptionally active suggesting why the n_counts was higher than all the other clusters
+#### -Marker gene dictionary
+#### -Marker gene dotplot
+#### -Cluster Labelling
+#### -Treatment Comparison 
+#### -Naive T cell analysis
