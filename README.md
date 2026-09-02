@@ -1,4 +1,4 @@
-# Analysis of scRNAseq data of PMBC cells to anaylyse effects of dupilumab pre and post treatment
+# Exploratory analysis of scRNAseq data of PMBC cells to anaylyse effects of dupilumab pre and post treatment
 
 ## Project Overview
 The aim of this project was to analyse the effect of dupilumab on Peripheral Blood Mononuclear Cells (PBMC cells). This was done by comparing the cell proportions and gene expression counts between the pre-treatment samples and the post-treatment samples. 
@@ -73,3 +73,13 @@ Four paried patients were originally used with 8 datasets however, 1 patient pai
 #### -Cluster Labelling
 #### -Treatment Comparison 
 #### -Naive T cell analysis
+
+## Exploratory Analysis
+### Cell-type annotation
+Leiden clustering produced 13 distinct clusters based on the previous neighboring graph and how similar each cell was to its neighbor. Clusters 1,7 and 8 were the largest clusters and 6, 10 and 12 were the smallest.
+
+Cluster 12 was perculiar and the majority of it's population was from sample AD035_pre. Cluster 12 was first thought to be an error cluster especially after it was shown to have very high total counts. This was shown to be a non-error cluster as the marker genes suggested this was a plasma cell cluster. Plasma cells are very transcriptionally active suggesting why the n_counts was higher than all the other clusters.
+
+A marker gene dictionary was then used to create a dotplot (Figure 1) to identify the key marker genes that were present in each cluster. The dotplot then enabled each cluster to be labelled with a cell type. The UMAP clustering plot was then labelled with the cell type labels (Figure 2)
+
+### Treatment Comparison 
