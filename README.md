@@ -83,3 +83,20 @@ Cluster 12 was perculiar and the majority of it's population was from sample AD0
 A marker gene dictionary was then used to create a dotplot (Figure 1) to identify the key marker genes that were present in each cluster. The dotplot then enabled each cluster to be labelled with a cell type. The UMAP clustering plot was then labelled with the cell type labels (Figure 2)
 
 ### Treatment Comparison 
+Once clusters had been labelled by cell-type, the next step was to compare the proportions of each cluster that were pre and post treatment (Table 1). Naive T cells and Plasma cells shows the biggest proportional decrease from pre to post treatment, whereas CD4 T cells showed an increse. However, these results don't mean anything in such a small sample study unless consistency can be proven. The next stage was to see whether all 3 patients showed the decrease/increase or whether one error sample was carrying the statistic.
+
+Naive T cells showed consistent decrease across all 3 patients, Plasma cells didn't show consistency however, as AD035 appeared to be carrying the statistic and the other 2 patients showed an increase. CD4 T cells were also consistent in the increase, meaning we had 2 key cell types to look at. However, as dupilumab's function is to reduce inflammation, it was seen as priority to explore the Naive T cell cluster first as it showed decrease from pre to post treatment.
+
+### Naive T cell exploratory analysis
+Each sample contained enough cells in the Naive T cell cluster to allow exploration of the data.
+Dupilumab targets IL4 receptors so the exploratory analysis first targetted genes that were associated with downstream signalling involving the IL4 receptor complex.
+These were: IL4R, IL13RA1, JAK1, JAK2, JAK3, TYK2, STAT6, STAT3, IRS2, GATA3
+All these genes were present in the data
+A heatmap (Figure 3) was plotted to easily show the gene expression of each gene and each sample. It was clear however that these key genes weren't showing large change between pre and post treatment. This maybe due to the changes being so small that it is hard to pick up in only 3 patients.
+
+The genes showing the most change (increase and decrease) were then ranked (Table 2). It was interesting that most of the genes that decreased the most were mitochondrial or ribosomal. The genes however that showed increased expression were more interesting. HLA-A/B/C/E were 4 related genes that showed the most consistent increase (Table 3) across patients.
+
+### Interpretation
+
+## Limitations
+
