@@ -76,27 +76,54 @@ Four paried patients were originally used with 8 datasets however, 1 patient pai
 
 ## Exploratory Analysis
 ### Cell-type annotation
-Leiden clustering produced 13 distinct clusters based on the previous neighboring graph and how similar each cell was to its neighbor. Clusters 1,7 and 8 were the largest clusters and 6, 10 and 12 were the smallest.
+Leiden clustering produced 13 distinct clusters based on the nearest-neighbour graph constructed using the principle components from the cells. Clusters 1,7 and 8 were the largest clusters and 6, 10 and 12 were the smallest.
 
-Cluster 12 was perculiar and the majority of it's population was from sample AD035_pre. Cluster 12 was first thought to be an error cluster especially after it was shown to have very high total counts. This was shown to be a non-error cluster as the marker genes suggested this was a plasma cell cluster. Plasma cells are very transcriptionally active suggesting why the n_counts was higher than all the other clusters.
+Cluster 12 was first considered to be an error cluster especially after it was shown to have very high total counts and was dominanantly present in the AD035_pre. This was shown to be a non-error cluster as marker gene annotation suggested this was a plasma cell cluster. Plasma cells are very transcriptionally active providing a biological reason for why the n_counts was higher than the other clusters.
 
-A marker gene dictionary was then used to create a dotplot (Figure 1) to identify the key marker genes that were present in each cluster. The dotplot then enabled each cluster to be labelled with a cell type. The UMAP clustering plot was then labelled with the cell type labels (Figure 2)
+A marker gene dictionary (see bottom of README) was then used to create a dotplot (Figure 1) to identify the key marker genes that were present in each cluster. The dotplot then enabled each cluster to be labelled with a cell type. The UMAP clustering plot was then labelled with the cell type labels (Figure 2)
 
 ### Treatment Comparison 
-Once clusters had been labelled by cell-type, the next step was to compare the proportions of each cluster that were pre and post treatment (Table 1). Naive T cells and Plasma cells shows the biggest proportional decrease from pre to post treatment, whereas CD4 T cells showed an increse. However, these results don't mean anything in such a small sample study unless consistency can be proven. The next stage was to see whether all 3 patients showed the decrease/increase or whether one error sample was carrying the statistic.
+Once clusters had been labelled by cell-type, the next step was to compare the proportions of each cluster that were pre and post treatment (Table 1). Naive T cells and Plasma cells shows the biggest proportional decrease from pre to post treatment, whereas CD4 T cells showed an increse. However, as only 3 paired patients were available the trends are exploratory and were checked for consistency across the patients. The next stage was to see whether all 3 patients showed the decrease/increase or whether one error sample was carrying the statistic.
 
-Naive T cells showed consistent decrease across all 3 patients, Plasma cells didn't show consistency however, as AD035 appeared to be carrying the statistic and the other 2 patients showed an increase. CD4 T cells were also consistent in the increase, meaning we had 2 key cell types to look at. However, as dupilumab's function is to reduce inflammation, it was seen as priority to explore the Naive T cell cluster first as it showed decrease from pre to post treatment.
+Naive T cells showed consistent decrease across all 3 patients. The plasma-cell decrease was not consistent across patients and appeared to be driven mainly by patient AD035. CD4 T cells were also consistent in the increase, meaning we had 2 key cell types to look at. However, as dupilumab's function is to reduce inflammation, it was seen as priority to explore the Naive T cell cluster first as it showed decrease from pre to post treatment.
 
 ### Naive T cell exploratory analysis
 Each sample contained enough cells in the Naive T cell cluster to allow exploration of the data.
-Dupilumab targets IL4 receptors so the exploratory analysis first targetted genes that were associated with downstream signalling involving the IL4 receptor complex.
+Dupilumab binds to IL4 receptors so the exploratory analysis first targetted genes that were associated with downstream signalling involving the IL4 receptor complex, as dupilumab could inhibit this cascade.
 These were: IL4R, IL13RA1, JAK1, JAK2, JAK3, TYK2, STAT6, STAT3, IRS2, GATA3
 All these genes were present in the data
-A heatmap (Figure 3) was plotted to easily show the gene expression of each gene and each sample. It was clear however that these key genes weren't showing large change between pre and post treatment. This maybe due to the changes being so small that it is hard to pick up in only 3 patients.
+A heatmap (Figure 3) was plotted to easily show the gene expression of each gene and each sample. The core IL-4/IL-13 pathway genes showed relatively stable expression between pre- and post-treatment samples. This may be because of subtle transcriptional changes that don't appear in only 3 patients. However, it is also important to note that dupilumab blocks IL4R signalling at the protein level and does not necessarily alter expression of the receptor or core signalling genes themselves.
 
-The genes showing the most change (increase and decrease) were then ranked (Table 2). It was interesting that most of the genes that decreased the most were mitochondrial or ribosomal. The genes however that showed increased expression were more interesting. HLA-A/B/C/E were 4 related genes that showed the most consistent increase (Table 3) across patients.
+To explore transcriptional changes beyond the key IL4 associated genes, genes were ranked according to their pre to post treatment expression change in Naive T cells (Table 2). Many of the genes showing the largest decreases were mitochondrial or ribosomal genes, making their biological interpretation more difficult to understand.
+However, several of the most consistently increased genes were members of the HLA family, including HLA-A, HLA-B, HLA-C (HLA-C wasn't as consistent as the others however still showed a overall increase) and HLA-E (Table 3). HLA genes are antigen genes and the exploratory analysis could suggest dupilumab causes an increase in antigen presentation of Naive T cells although this is not a statistically established effect due to the small sample size.
 
-### Interpretation
+## Key Exploratory Findings
+- Leiden clustering produced 13 clusters
+- Naive T cells showed the most consistent cell decrease between pre and post treatments
+- CD4 T cells showed the most consistent cell increase between pre and post treatments
+- Core IL4 signalling cascade genes showed stable expression between pre and post treatments in Naive T cells
+- Several HLA genes showed consistent post treatment increases in Naive T cells 
 
 ## Limitations
+- Only 3 paired samples
+- 1 pair had to be excluded due to poor data
+- No statistical testing due to small sample size 
+- All conclusions are exploratory 
 
+## Marker Gene Dictionary
+T cells: CD3D, CD3E, TRAC 
+CD4 T cells: IL7R, LTB, MAL, CCR7 
+Naive T cells: CCR7, SELL, TCF7, LEF1, MAL 
+CD8 T cells: CD8A, CD8B, CCL5, NKG7, GZMK 
+Regulatory T cells: FOXP3, IL2RA, CTLA4, TIGIT 
+NK cells: NKG7, GNLY, KLRD1, PRF1, GZMB 
+B cells: MS4A1, CD79A, CD79B, CD74, CD37 
+Naive B cells: IGHD, IGHM, TCL1A, FCER2, IL4R 
+Memory B cells: CD27, CD37, CD79A, CD82, TNFRSF13B
+Plasma cells: MZB1, JCHAIN, XBP1, SDC1, DERL3 
+Classical monocytes: LYZ, S100A8, S100A9, CTSD, FCN1, CD14 
+Non-classical monocytes: FCGR3A, MS4A7, LST1, IFITM3, LILRB1 
+cDC2: CD1C, FCER1A, CLEC10A, CST3, HLA-DRA 
+cDC1: CLEC9A, BATF3, CADM1, XCR1 
+pDC: LILRA4, GZMB, PLD4, IL3RA, TCF4 
+Platelets: PPBP, PF4, NRGN, GNG11 
