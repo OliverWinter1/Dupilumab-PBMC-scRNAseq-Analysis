@@ -1,4 +1,4 @@
-# Exploratory analysis of scRNAseq data of PMBC cells to anaylyse effects of dupilumab pre and post treatment
+# Exploratory Single-Cell RNA-seq Analysis of PBMCs Before and After Dupilumab Treatment
 
 ## Project Overview
 The aim of this project was to analyse the effect of dupilumab on Peripheral Blood Mononuclear Cells (PBMC cells). This was done by comparing the cell proportions and gene expression counts between the pre-treatment samples and the post-treatment samples. 
